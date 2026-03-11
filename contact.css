@@ -242,110 +242,128 @@ body { font-family: 'Arial', sans-serif; background: var(--bg-body); transition:
 
 
 
-/*contact*/
+
+/* --- CONTACT SECTION STYLES --- */
+/* --- 1. THEME VARIABLE DEFINITIONS --- */
 :root {
-  --contact-text: #ffffff;
-  --input-placeholder: rgba(255, 255, 255, 0.6);
-  
+    --contact-title: #2d3436;      /* Dark Title for Light Mode */
+    --contact-text: #636e72;       /* Grey for details */
+    --input-label: #b2bec3;        /* Muted labels */
+    --input-text: #2d3436;         /* Dark input text */
+    --input-border: rgba(0,0,0,0.1);
+    --cta-gold: #d4af37;           /* Branding stays Gold */
 }
 
-/* Light Mode Overrides */
-[data-theme="light"] {
-  --contact-text: #1a1a1a;
-  --input-placeholder: rgba(0, 0, 0, 0.5);
-  --btn-purple: #700070;
+[data-theme="dark"] {
+    --contact-title: #ffffff;      /* White Title for Dark Mode */
+    --contact-text: #dfe6e9;       /* Light grey for details */
+    --input-label: #999999;        /* Muted grey labels */
+    --input-text: #ffffff;         /* White input text */
+    --input-border: rgba(255,255,255,0.2);
+    --cta-gold: #f1c40f;           /* Brighter Gold for Dark contrast */
 }
 
-.contact-section-new {
-  position: relative;
-  background: url('contact\ image.jpg') center/cover no-repeat fixed; /* Dancer image from your screenshot */
-  min-height: 100vh;
+/* --- 2. APPLYING VARIABLES TO CONTACT SECTION --- */
+
+.cursive-title {
+    color: var(--contact-title);
+    transition: color 0.3s ease;
 }
 
-.contact-bg-overlay {
-  background: rgba(0, 0, 0, 0.7); /* Darkens the dancer image for readability */
-  padding: 100px 5%;
-  min-height: 100vh;
+.contact-details p {
+    color: var(--contact-text);
 }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* Mobile-first */
-  gap: 60px;
-  align-items: center;
+.cta-text {
+    color: var(--cta-gold); /* High-contrast gold for both modes */
+    font-weight: 800;
 }
 
-.contact-main-title {
-  font-size: 3rem;
-  color: #ffffff; /* Stays white to contrast with dark overlay */
-  margin-bottom: 30px;font-family: 'Brush Script MT', cursive;
+.input-group {
+    border-bottom: 1px solid var(--input-border);
 }
 
-/* Glass Map Card */
-.map-card.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 10px;
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  margin-bottom: 30px;
+.input-group label {
+    color: var(--input-label);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.contact-details { list-style: none; color: #ffffff; }
-.contact-details li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: bold; }
-
-/* Right Form Styling */
-.gold-callout {
-  color: #d4af37; /* Gold color from image */
-  font-weight: 800;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  margin-bottom: 40px;
-  text-transform: uppercase;
+.input-group input, 
+.input-group textarea {
+    color: var(--input-text);
+    background: transparent;
+    border: none;
 }
 
-.dance-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-
-.glass-input {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--input-placeholder);
-  padding: 15px 0;
-  color: var(--contact-text);
-  font-size: 1rem;
-  transition: all 0.3s ease;
+/* Update Placeholders for Dark Mode */
+.input-group input::placeholder {
+    color: var(--input-label);
+    opacity: 0.7;
 }
 
-.glass-input::placeholder { color: var(--input-placeholder); }
-
-/* Hover Effect on Inputs */
-.glass-input:hover { border-bottom-color: var(--btn-purple); }
-.glass-input:focus { border-bottom-color: #ffffff; outline: none; }
-
-.textarea-full { grid-column: span 2; min-height: 100px; margin-bottom: 40px; }
-
-/* Purple Pill Button */
-.btn-purple-pill {
-  width: 100%;
-  background-color: var(--btn-gradient);
-  color: white;
-  border: none;
-  padding: 20px;
-  border-radius: 50px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* Submit Button Hover */
+.submit-btn {
+    color: var(--contact-title);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.btn-purple-pill:hover {
-  transform: translateY(-5px);
-  background-color:var(--accent-gold);
-  box-shadow: 0 10px 20px rgba(207, 237, 35, 0.4);
+.submit-btn:hover {
+    color: var(--cta-gold);
 }
 
-/* Desktop Adjustment */
+.contact-section {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('images/contact\ image.jpg.');
+    background-size: cover; background-position: center;
+    padding: 80px 5%; color: white;
+}
+
+.contact-container {
+    display: flex; flex-direction: column; gap: 50px;
+    max-width: 1200px; margin: 0 auto;
+}
+
+/* Map & Details */
+.cursive-title { font-family: 'Brush Script MT', cursive;; font-size: 3rem; margin-bottom: 30px; }
+.map-card {
+    background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+    border-radius: 20px; padding: 10px; border: 1px solid rgba(255,255,255,0.2);
+    overflow: hidden; margin-bottom: 30px;
+}
+.map-card iframe { width: 100%; height: 300px; border: none; border-radius: 15px; }
+
+.contact-details p { margin: 15px 0; font-size: 0.9rem; display: flex; gap: 10px; align-items: center; }
+
+/* Form Styling */
+.cta-text { color: var(--accent-color); font-weight: 800; font-size: 1.1rem; margin-bottom: 40px; font-family: 'Brush Script MT', cursive;}
+.input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.input-group { position: relative; border-bottom: 1px solid rgba(255,255,255,0.3); margin-bottom: 25px; }
+.input-group label { display: block; font-size: 0.8rem; color: #aaa; margin-bottom: 5px; }
+.input-group input, .input-group textarea {
+    width: 100%; background: transparent; border: none; color: white; padding: 10px 0; outline: none;
+}
+.full-width { grid-column: span 2; }
+
+
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+/* Mobile (< 640px) */
+@media (max-width: 639px) {
+    .input-grid { grid-template-columns: 1fr; }
+    .full-width { grid-column: span 1; }
+    .cursive-title { font-size: 2rem; }
+}
+
+/* Desktop (> 1024px) */
 @media (min-width: 1024px) {
-  .contact-grid { grid-template-columns: 1fr 1.2fr; }
+    .contact-container { flex-direction: row; align-items: flex-start; }
+    .contact-map-info { flex: 1; }
+    .contact-form-side { flex: 1.2; padding-left: 50px; }
+    .submit-btn { display: block; margin-left: auto; } /* Align Right as per image */
 }
-
